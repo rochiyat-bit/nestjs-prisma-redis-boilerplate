@@ -367,35 +367,55 @@ Access pgAdmin at http://localhost:5050:
 
 ## Production Deployment
 
-For production deployment guides, see [DEPLOYMENT.md](./DEPLOYMENT.md).
+### Deploy to Vercel (Recommended)
 
-Supported platforms:
-- **Vercel** (Serverless)
+This boilerplate is **fully configured** for Vercel serverless deployment.
+
+**Quick Deploy:**
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/nestjs-prisma-redis-boilerplate)
+
+**Manual Deploy:**
+
+1. **Push to GitHub**
+   ```bash
+   git push origin main
+   ```
+
+2. **Import to Vercel**
+   - Go to [Vercel Dashboard](https://vercel.com/new)
+   - Import your repository
+   - Configure environment variables (see below)
+
+3. **Required Environment Variables**
+   ```env
+   DATABASE_URL=postgresql://...?connection_limit=1
+   REDIS_HOST=your-redis.upstash.io
+   REDIS_PORT=6379
+   REDIS_PASSWORD=xxx
+   JWT_SECRET=your-32-char-secret
+   JWT_REFRESH_SECRET=your-32-char-secret
+   NODE_ENV=production
+   ```
+
+4. **Deploy** - Click deploy and wait 2-3 minutes
+
+**📖 Complete Vercel Guide:** See [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md) for:
+- Step-by-step deployment guide
+- Database setup (Supabase/Neon/Railway)
+- Redis setup (Upstash recommended)
+- Environment variables reference
+- Troubleshooting tips
+- Performance optimization
+
+### Other Platforms
+
+For deployment to other platforms, see [DEPLOYMENT.md](./DEPLOYMENT.md):
 - **AWS** (EC2, ECS, Lambda)
 - **Google Cloud** (Cloud Run, GKE)
 - **DigitalOcean** (App Platform, Droplets)
 - **Heroku**
-
-### Quick Deploy to Vercel
-
-1. Install Vercel CLI:
-```bash
-npm install -g vercel
-```
-
-2. Deploy:
-```bash
-vercel
-```
-
-3. Configure environment variables in Vercel Dashboard
-
-4. Run migrations:
-```bash
-npx prisma migrate deploy
-```
-
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions.
+- **Railway**
 
 ## Environment Variables
 
